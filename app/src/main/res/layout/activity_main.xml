@@ -115,16 +115,54 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
-            <com.example.elluminati.CounterView
+
+            <LinearLayout
                 android:id="@+id/counterView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="130dp"
+                android:layout_height="50dp"
+                android:orientation="horizontal"
+                android:background="@drawable/counter_background"
+                android:gravity="center"
                 android:layout_centerInParent="true"
                 android:layout_marginEnd="16dp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/button_decrement"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="1dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:drawableStart="@drawable/noun_remove_6888289" />
+
+                <TextView
+                    android:id="@+id/text_count"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/count_background"
+                    android:fontFamily="@font/poppins"
+                    android:padding="10dp"
+                    android:text="1"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/button_increment"
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+
+                    android:drawableEnd="@drawable/baseline_add_circle_outline_24"
+                    android:fontFamily="@font/poppins"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btn_customize"
@@ -145,6 +183,22 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </FrameLayout>
+
+
+    <com.nex3z.notificationbadge.NotificationBadge
+        android:id="@+id/badge"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:nbMaxTextLength="2"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="68dp"
+        tools:layout_editor_absoluteY="551dp" />
 
     <Button
         android:id="@+id/viewcart"
