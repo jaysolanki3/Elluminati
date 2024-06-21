@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity {
         customize = findViewById(R.id.btn_customize);
         viewcrt = findViewById(R.id.viewcart);
         counterView = findViewById(R.id.counterView);
-        CounterView counterView1 = new CounterView(this);
-        increment = findViewById(R.id.button_increment);
 
         Intent intent = getIntent();
         Integer i = intent.getIntExtra("btnvisible",0);
