@@ -20,7 +20,7 @@ import java.util.List;
 public class RadioButtonAdapter extends RecyclerView.Adapter<RadioButtonAdapter.RadioButtonViewHolder> {
 
     private List<SpecificationItem> items;
-    private int selectedPosition = -1;
+    private int selectedPosition = 0;
     private OnItemClickListener onItemClickListener;
     String modifier;
 
@@ -51,8 +51,9 @@ public class RadioButtonAdapter extends RecyclerView.Adapter<RadioButtonAdapter.
         holder.textViewName.setText(item.getName().get(0));
         holder.textViewPrice.setText("₹ " + item.getPrice() + ".00");
 
-        if(selectedPosition == -1){
-            onItemClickListener.onItemClick(item,"1 BHK",item.getPrice());
+        String flag = "First";
+        if(selectedPosition == 0){
+            onItemClickListener.onItemClick(item,"First",item.getPrice());
         }
 
         holder.itemView.setOnClickListener(v -> {

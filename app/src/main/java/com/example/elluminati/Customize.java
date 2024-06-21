@@ -1,16 +1,15 @@
 package com.example.elluminati;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.ColorRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +37,7 @@ public class Customize extends AppCompatActivity {
     private RecyclerView recyclerView1;
     private RadioButtonAdapter adapter;
     private List<SpecificationItem> radioButtonItems;
+    Integer price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class Customize extends AppCompatActivity {
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        if(getSupportActionBar ()!= null){
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowCustomEnabled(true);
         }
@@ -70,24 +70,77 @@ public class Customize extends AppCompatActivity {
         adapter = new RadioButtonAdapter(radioButtonItems, this::updateDetailList);
         loadJsonFromAssets();
 
-        itemAdapter = new ItemAdapter(allItems);
+        itemAdapter = new ItemAdapter(allItems, this::updateCheckbox);
 
         recyclerView1.setAdapter(adapter);
         recyclerView.setAdapter(itemAdapter);
 
-    }
-    private void updateDetailList(SpecificationItem item,String modifier,Integer price) {
-
-        List<Item> newDetails = new ArrayList<>();
-        for(Item item2 : allItems){
-            if(item2.getModifierName().equalsIgnoreCase(modifier)){
-                newDetails.add(item2);
+        addtocart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                intent.putExtra("totalprice",price);
+                intent.putExtra("btnvisible",1);
+                startActivity(intent);
             }
+        });
+
+    }
+
+    private void updateDetailList(SpecificationItem item, String modifier, Integer price1) {
+        if (modifier == "First") {
+            price1 = 999;
+            price = price1;
+            String btn = "ADD TO CART ₹" + price1 + ".00";
+            addtocart.setText(btn);
+            List<Item> newDetails = new ArrayList<>();
+            for (Item item2 : allItems) {
+                if (item2.getModifierName().equalsIgnoreCase("1 BHK")) {
+                    newDetails.add(item2);
+                }
+            }
+            itemAdapter.updateItems(newDetails);
+        } else {
+            price = price1;
+            String btn = "ADD TO CART ₹" + price1 + ".00";
+            addtocart.setText(btn);
+            Log.e("price", btn);
+            List<Item> newDetails = new ArrayList<>();
+            for (Item item2 : allItems) {
+                if (item2.getModifierName().equalsIgnoreCase(modifier)) {
+                    newDetails.add(item2);
+                }
+            }
+            itemAdapter.updateItems(newDetails);
         }
-        itemAdapter.updateItems(newDetails);
-        String btn = "ADD TO CART ₹"+price+".00";
-        addtocart.setText(btn);
-        Log.e("price",btn);
+    }
+
+    private void updateCheckbox(Item item, CheckBox[] cb, Integer flag) {
+
+//        for(Integer i =0; i<4; i++){
+//            cb[i].setChecked(false);
+//        }
+        //itemAdapter.updateItems1();
+        if (flag == 1) {
+            for (Integer i = 0; i < 4; i++) {
+                cb[i].setChecked(false);
+            }
+            for (SpecificationItem specItem : item.getList()) {
+                if (specItem.isIs_default_selected() == true) {
+                    specItem.setIs_default_selected(false);
+                }
+            }
+            //itemAdapter.updateItems();
+        }else if(flag == 0) {
+            for (SpecificationItem specItem : item.getList()) {
+                if (specItem.isIs_default_selected() == true) {
+                    price = price + specItem.getPrice();
+                }
+            }
+            String btn = "ADD TO CART ₹" + price + ".00";
+            addtocart.setText(btn);
+        }
+
     }
 
     private void loadJsonFromAssets() {
@@ -102,7 +155,8 @@ public class Customize extends AppCompatActivity {
 
             // Using Gson to parse JSON
             Gson gson = new Gson();
-            Type itemType = new TypeToken<ArrayList<Item>>() {}.getType();
+            Type itemType = new TypeToken<ArrayList<Item>>() {
+            }.getType();
             allItems = gson.fromJson(json, itemType);
 
         } catch (IOException e) {
@@ -119,7 +173,7 @@ public class Customize extends AppCompatActivity {
 //                    break;
 //                }
 //            }
-            if(item.getModifierName().equalsIgnoreCase(modifier)){
+            if (item.getModifierName().equalsIgnoreCase(modifier)) {
                 filteredItems.add(item);
             }
         }
