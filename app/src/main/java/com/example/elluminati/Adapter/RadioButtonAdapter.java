@@ -23,15 +23,11 @@ public class RadioButtonAdapter extends RecyclerView.Adapter<RadioButtonAdapter.
     private int selectedPosition = 0;
     private OnItemClickListener onItemClickListener;
     String modifier;
-
     Button addtocart;
-
 
     public interface OnItemClickListener {
         void onItemClick(SpecificationItem item,String modifier, Integer price);
     }
-
-
 
 
     public RadioButtonAdapter(List<SpecificationItem> items, OnItemClickListener onItemClickListener) {
