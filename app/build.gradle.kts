@@ -43,8 +43,7 @@ dependencies {
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     implementation("com.google.code.gson:gson:2.8.8")
-    implementation ("me.leolin:ShortcutBadger:1.1.22@aar")
-    implementation ("com.nex3z:notification-badge:1.0.2")
+   //implementation ("com.nex3z:notification-badge:1.0.2")
 
 
 

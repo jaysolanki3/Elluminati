@@ -1,43 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="130dp"
-    android:layout_height="50dp"
-    android:orientation="horizontal"
-    android:background="@drawable/counter_background"
-    android:gravity="center">
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="130dp"-->
+<!--    android:layout_height="50dp"-->
+<!--    android:orientation="horizontal"-->
+<!--    android:background="@drawable/counter_background"-->
+<!--    android:gravity="center">-->
 
-    <TextView
-        android:id="@+id/button_decrement"
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="1dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:drawableStart="@drawable/noun_remove_6888289" />
+<!--    <TextView-->
+<!--        android:id="@+id/button_decrement"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="1dp"-->
+<!--        android:background="?attr/selectableItemBackgroundBorderless"-->
+<!--        android:drawableStart="@drawable/noun_remove_6888289" />-->
 
-    <TextView
-        android:id="@+id/text_count"
-        android:layout_width="40dp"
-        android:layout_height="match_parent"
-        android:background="@drawable/count_background"
-        android:fontFamily="@font/poppins"
-        android:padding="10dp"
-        android:text="1"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold" />
+<!--    <TextView-->
+<!--        android:id="@+id/text_count"-->
+<!--        android:layout_width="40dp"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="@drawable/count_background"-->
+<!--        android:fontFamily="@font/poppins"-->
+<!--        android:padding="10dp"-->
+<!--        android:text="1"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="20dp"-->
+<!--        android:textStyle="bold" />-->
 
-    <TextView
-        android:id="@+id/button_increment"
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackgroundBorderless"
+<!--    <TextView-->
+<!--        android:id="@+id/button_increment"-->
+<!--        android:layout_width="30dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="?attr/selectableItemBackgroundBorderless"-->
 
-        android:drawableEnd="@drawable/baseline_add_circle_outline_24"
-        android:fontFamily="@font/poppins"
-        android:textStyle="bold" />
+<!--        android:drawableEnd="@drawable/baseline_add_circle_outline_24"-->
+<!--        android:fontFamily="@font/poppins"-->
+<!--        android:textStyle="bold" />-->
+
+
+<!--</LinearLayout>-->
+<LinearLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/counterView"
+android:layout_width="wrap_content"
+android:layout_height="40dp"
+android:orientation="horizontal"
+android:background="@drawable/counter_background"
+android:gravity="center"
+    >
+
+<TextView
+    android:id="@+id/button_decrement"
+    android:layout_width="30dp"
+    android:paddingLeft="5dp"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    android:drawableStart="@drawable/noun_remove_6888289"
+    android:gravity="center"/>
+
+<TextView
+    android:id="@+id/text_count"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@drawable/count_background"
+    android:fontFamily="@font/poppins"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="6dp"
+    android:text="1"
+    android:textAlignment="center"
+    android:textColor="@color/black"
+    android:textSize="20dp"
+    android:textStyle="bold" />
+
+<TextView
+    android:id="@+id/button_increment"
+    android:layout_width="30dp"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackgroundBorderless"
+    android:paddingRight="4dp"
+    android:drawableEnd="@drawable/baseline_add_circle_outline_24"
+    android:fontFamily="@font/poppins"
+    android:textStyle="bold" />
 
 
 </LinearLayout>

@@ -26,7 +26,6 @@ import androidx.core.view.WindowInsetsCompat;
 
 import java.util.ListIterator;
 
-import me.leolin.shortcutbadger.ShortcutBadger;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -66,10 +65,16 @@ public class MainActivity extends AppCompatActivity {
                 if(counter == 0){
                     counter = 1;
                     Intent intent = new Intent(getApplicationContext(), Customize.class);
+                    //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                 }
-                else {
-                showDialog();}
+            }
+        });
+
+        btnincr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog();
             }
         });
 
@@ -95,12 +100,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(),"Customization",Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
             }
         });
         btRepeat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(),"Repeat",Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
             }
         });
 

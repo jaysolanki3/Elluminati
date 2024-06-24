@@ -1,15 +1,12 @@
 package com.example.elluminati.Adapter;
 
 import android.util.Log;
-import android.view.ActionMode;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
@@ -21,7 +18,6 @@ import com.example.elluminati.DataModel.SpecificationItem;
 import com.example.elluminati.R;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder> {
@@ -30,9 +26,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
     Integer totalprice = 0;
     private List<Item> items;
     private OnItemClickListener onItemClickListener;
+    List<Integer> listprice = new ArrayList<>();
 
     public interface OnItemClickListener {
-        void onItemClick(Item item, CheckBox[] cb, Integer flag);
+        void onItemClick(Item item, CheckBox[] cb, Integer flag, Integer integer);
     }
 
     public ItemAdapter(List<Item> items, OnItemClickListener onItemClickListener) {
@@ -55,7 +52,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         Integer[] id = new Integer[4];
         int i = 0;
         Item item = items.get(position);
-        List<SpecificationItem> filteredItems = new ArrayList<>();
+        Log.e("position", String.valueOf(items.get(position)));
 
 
 
@@ -97,6 +94,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
         for( j =0 ; j<4 ;j++){
             Integer finalJ = j;
+            Integer finalJ1 = j;
             holder.cb[j].setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -104,15 +102,34 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
                         for(SpecificationItem specitem : item.getList()){
                             if(specitem.getUnique_id() == id[finalJ]){
                                 specitem.setIs_default_selected(true);
+                                totalprice = specitem.getPrice();
+                                listprice.add(specitem.getPrice());
                             }
                         }
+                        onItemClickListener.onItemClick(item,holder.cb,0,totalprice);
+
                     }
-                    onItemClickListener.onItemClick(item,holder.cb,0);
-                    Log.e("ITEMADAPTER", "HIII");
+                    if(holder.cb[finalJ1].isChecked() == false){
+
+                        for(SpecificationItem specitem : item.getList()){
+                            if(specitem.getUnique_id() == id[finalJ1]){
+                                totalprice = specitem.getPrice();
+                                specitem.setIs_default_selected(false);
+                                listprice.remove(Integer.valueOf(specitem.getPrice()));
+                            }
+                        }
+//                        onItemClickListener.onItemClick(item,holder.cb,2,totalprice);
+//                        Log.e("Check changed", totalprice.toString());
+                    }
+//                    int sum = 0;
+//                    for (Integer i : listprice)
+//                        sum += i;
+//                    Log.e("ITEMADAPTER", String.valueOf(sum));
+//                    onItemClickListener.onItemClick(item,holder.cb,0,sum);
                 }
             });
         }
-        onItemClickListener.onItemClick(item,holder.cb,1);
+        onItemClickListener.onItemClick(item,holder.cb,1,totalprice);
         Log.e("ITEMADAPTER", "HELLOOOOOO");
     }
 
@@ -128,15 +145,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         notifyDataSetChanged();
     }
 
-    public void updateItems1() {
-        notifyDataSetChanged();
-    }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
         CheckBox[] cb = new CheckBox[4];
         public TextView ntitle, price1, price2, price3, price4;
         public CheckBox item1,item2,item3,item4;
-        public TableRow r3,r4;
+        public RelativeLayout r3,r4;
 
 //        public TextView uniqueIdTextView;
 //        public TextView specificationsTextView;

@@ -39,6 +39,7 @@ public class Customize extends AppCompatActivity {
     private List<SpecificationItem> radioButtonItems;
     Integer price;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +82,7 @@ public class Customize extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                 intent.putExtra("totalprice",price);
                 intent.putExtra("btnvisible",1);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
@@ -115,7 +117,7 @@ public class Customize extends AppCompatActivity {
         }
     }
 
-    private void updateCheckbox(Item item, CheckBox[] cb, Integer flag) {
+    private void updateCheckbox(Item item, CheckBox[] cb, Integer flag, Integer updtprice) {
 
 //        for(Integer i =0; i<4; i++){
 //            cb[i].setChecked(false);
@@ -130,13 +132,19 @@ public class Customize extends AppCompatActivity {
                     specItem.setIs_default_selected(false);
                 }
             }
-            //itemAdapter.updateItems();
+            Log.e("price1", price.toString());
+            //itemAdapter.updateItems1();
         }else if(flag == 0) {
-            for (SpecificationItem specItem : item.getList()) {
-                if (specItem.isIs_default_selected() == true) {
-                    price = price + specItem.getPrice();
-                }
-            }
+//            for (SpecificationItem specItem : item.getList()) {
+//                if (specItem.isIs_default_selected() == true) {
+//                    price = price + specItem.getPrice();
+//                }
+//            }
+            price = price + updtprice;
+            String btn = "ADD TO CART ₹" + price + ".00";
+            addtocart.setText(btn);
+        }else if(flag == 2) {
+            price = price + updtprice;
             String btn = "ADD TO CART ₹" + price + ".00";
             addtocart.setText(btn);
         }

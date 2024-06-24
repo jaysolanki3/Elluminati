@@ -32,6 +32,8 @@ public class RadioButtonAdapter extends RecyclerView.Adapter<RadioButtonAdapter.
     }
 
 
+
+
     public RadioButtonAdapter(List<SpecificationItem> items, OnItemClickListener onItemClickListener) {
         this.items = items;
         this.onItemClickListener = onItemClickListener;

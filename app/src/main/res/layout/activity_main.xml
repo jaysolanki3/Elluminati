@@ -184,21 +184,16 @@
 
     </androidx.cardview.widget.CardView>
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-    </FrameLayout>
 
 
-    <com.nex3z.notificationbadge.NotificationBadge
-        android:id="@+id/badge"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:nbMaxTextLength="2"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="68dp"
-        tools:layout_editor_absoluteY="551dp" />
+<!--    <com.nex3z.notificationbadge.NotificationBadge-->
+<!--        android:id="@+id/badge"-->
+<!--        android:layout_width="40dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        app:nbMaxTextLength="2"-->
+<!--        tools:ignore="MissingConstraints"-->
+<!--        tools:layout_editor_absoluteX="136dp"-->
+<!--        tools:layout_editor_absoluteY="537dp" />-->
 
     <Button
         android:id="@+id/viewcart"
