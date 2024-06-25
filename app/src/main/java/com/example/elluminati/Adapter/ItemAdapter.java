@@ -30,6 +30,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     public interface OnItemClickListener {
         void onItemClick(Item item, CheckBox[] cb, Integer flag, Integer integer);
+
     }
 
     public ItemAdapter(List<Item> items, OnItemClickListener onItemClickListener) {
