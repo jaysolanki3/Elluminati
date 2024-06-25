@@ -52,7 +52,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
         Integer[] id = new Integer[4];
         int i = 0;
         Item item = items.get(position);
-        Log.e("position", String.valueOf(items.get(position)));
+        Log.e("item", String.valueOf(items.get(position)));
 
 
 
